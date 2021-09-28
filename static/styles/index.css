@@ -1,0 +1,14 @@
+.navbar-scroll .nav-link:hover {
+    color: #004fcf;
+  }
+  body {
+    font-family: 'Stick No Bills';
+    font-size: x-large;
+  }
+  
+  h1,h2,h3,h4,h5,h6 {
+      font-family: 'Stick No Bills';
+  }
+  p {
+      font-family: 'Stick No Bills';
+  }
