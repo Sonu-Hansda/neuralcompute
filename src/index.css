@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    html{
+        font-family: "Merriweather",sans-serif;
+    }
+    .content{
+        @apply py-2 px-4 md:px-16 lg:px-48 md:text-lg
+    }
+    .content ul{
+        @apply list-disc px-4 mb-2
+    }
+    .content p{
+        @apply mb-2 lg:mb-8
+    }
+    .content h1 {
+        @apply text-lg font-semibold pb-2
+    }
+    .content h2 {
+        @apply font-semibold pb-2
+    }
+    .content p>code{
+        @apply bg-gray-200 rounded-sm px-2 font-light
+    }
+    .content a{
+        @apply italic underline underline-offset-2 text-green-600
+
+    }
+    .content figure > img{
+        @apply py-2
+    }
+    .content figcaption{
+        @apply text-gray-600 text-center pb-2 not-italic text-sm
+    }
+}
+
+@layer utilities {
+    @variants responsive {
+     
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+     
+      .no-scrollbar {
+          -ms-overflow-style: none;  
+          scrollbar-width: none;  
+      }
+    }
+  }
