@@ -1,28 +1,37 @@
-name: Build App
+name: Deploy to cPanel using FTP
 
 on:
   push:
     branches:
       - main
-  
-  workflow_dispatch:
 
 jobs:
-  build:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: checkout source code
-        uses: actions/checkout@v2
-      
-      - name: setup node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      
-      - name: install dependencies
-        run: npm install
-      
-      - name: build react app
-        run: npm run build
-        
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: 🔨 Build the app
+      run: npm ci && npm run build
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: dist
+        exclude: |
+          **/.git*
+          .env
+          test.py
+          package.json
+          postcss.config.js
+          tailwind.config.js
+          .gitignore
+          .github/**
+
+    - name: 🧹 Clean up build files
+      run: rm -rf build/
