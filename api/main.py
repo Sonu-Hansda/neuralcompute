@@ -12,6 +12,10 @@ db.init_app(app)
 migrate = Migrate(app,db)
 mail = Mail(app)
 
+@app.get("/check-working")
+def working():
+    return "Site is working fine."
+
 @app.post("/verify-email")
 def verifyEmail():
     email = request.get_json()["email"]
