@@ -22,6 +22,9 @@ jobs:
     - name: 🔨 Install dependencies and build the app
       run: yarn && yarn build
 
+    - name: 📂 Copy "api" folder to "dist/api/"
+      run: cp -r api dist/
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
