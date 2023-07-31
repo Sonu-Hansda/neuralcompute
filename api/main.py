@@ -2,7 +2,7 @@ import random
 from flask import Flask, request, jsonify
 from flask_mail import Mail,Message
 from flask_migrate import Migrate
-from flask_cors import CORS
+from flask_cors import CORS,cross_origin
 from models import User
 from database import db
 from config import Config
@@ -10,7 +10,7 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-CORS(app, resources={r"/*": {"origins": "https://neuralcompute.xyz"}})
+CORS(app,origins=["https://neuralcompute.xyz"])
 migrate = Migrate(app,db)
 mail = Mail(app)
 
