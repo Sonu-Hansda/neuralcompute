@@ -208,10 +208,10 @@ const Contact = () => {
             </button>
           </span>
           {error && !success && (
-            <span className="block col-span-2 text-red-600">⚠️ {error}</span>
+            <span className="block md:col-span-2 text-red-600">⚠️ {error}</span>
           )}
           {success && !error && (
-            <span className="block col-span-2 text-green-800">
+            <span className="block md:col-span-2 text-green-800">
               ✅ {success}
             </span>
           )}
