@@ -1,6 +1,6 @@
 import { APIResponseTypes } from "../types/Enums";
 
-const BASEURL = "http://localhost:5000";
+const BASEURL = "https://api.neuralcompute.xyz";
 const checkAPI = async (): Promise<boolean> => {
   const response: Response = await fetch(`${BASEURL}/check-working`);
   if (response.ok) {
@@ -18,9 +18,7 @@ const verifyEmail = async (email: string): Promise<APIResponseTypes> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email }),
-    });
-    console.log(response);
-    
+    });  
     if (response.status == 200) {
       return APIResponseTypes.verified;
     } else if (response.status == 401) {

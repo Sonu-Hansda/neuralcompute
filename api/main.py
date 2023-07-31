@@ -2,7 +2,7 @@ import random
 from flask import Flask, request, jsonify
 from flask_mail import Mail,Message
 from flask_migrate import Migrate
-from flask_cors import CORS,cross_origin
+from flask_cors import CORS
 from models import User
 from database import db
 from config import Config
@@ -24,16 +24,12 @@ def verifyEmail():
     otp = random.randint(100000,999999)
     user = User.query.filter_by(email=email).first()
     if not user:
-        print("User not found")
         user = User(email=email,otp=otp)
         User.create(user)
     else:
-        print("User found")
         if user.verified:
-            print("User verified")
             return jsonify({"message":"Email already verified."}),200
         user.otp = otp
-        print("User not verified")
         User.update(user)
     msg = Message("OTP Verification",recipients=[email])
     msg.body = f"Your otp is : {otp}"
