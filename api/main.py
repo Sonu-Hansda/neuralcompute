@@ -10,7 +10,7 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-cors = CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://neuralcompute.xyz"}})
 migrate = Migrate(app,db)
 mail = Mail(app)
 

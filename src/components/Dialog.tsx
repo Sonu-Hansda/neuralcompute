@@ -39,7 +39,7 @@ const Dialog = (props: IDialog) => {
           <XMarkIcon height={24} />
         </button>
       </span>
-      <div className="flex gap-2 justify-center mt-8">
+      <div className="flex flex-col gap-2 justify-center mt-8">
         <label htmlFor="otp">Please enter the OTP that has been sent to your email address.</label>
         <input
           ref={inputRef}
