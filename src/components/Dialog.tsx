@@ -32,21 +32,22 @@ const Dialog = (props: IDialog) => {
   };
 
   return (
-    <div className="bg-white w-1/4 h-auto flex flex-col">
+    <div className="bg-white w-full mx-2 md:mx-0 md:w-1/2 lg:w-1/4 h-auto flex flex-col">
       <span className="flex gap-x-8 justify-between border-b-2 p-4">
         Email verification
         <button onClick={props.closeDialog} aria-label="Close Dialog" >
           <XMarkIcon height={24} />
         </button>
       </span>
-      <div className="flex flex-col gap-2 justify-center mt-8">
-        <label htmlFor="otp">Please enter the OTP that has been sent to your email address.</label>
+      <div className="flex flex-col gap-2 justify-center mt-8 items-center">
+        <label htmlFor="otp" className="w-96 text-sm mb-4">Please enter the OTP that has been sent to your email address.</label>
         <input
           ref={inputRef}
           className="border border-gray-300 w-48 h-12 text-center outline-none focus:ring-2 focus:ring-green-500"
           type="text"
           name="otp"
           maxLength={6}
+          placeholder="000000"
           value={otp}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
