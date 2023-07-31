@@ -20,9 +20,14 @@ class User(db.Model):
         self.otp = otp
         self.email = email
     
-    def verify(self):
-        self.verified = True
-        self.otp = None
+    def verify(self) ->bool:
+        try:
+            self.verified = True
+            self.otp = None
+            db.session.commit()
+            return True
+        except:
+            return False
     
     def update(self) ->bool:
         try:

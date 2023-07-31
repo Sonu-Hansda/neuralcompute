@@ -2,6 +2,7 @@ import random
 from flask import Flask, request, jsonify
 from flask_mail import Mail,Message
 from flask_migrate import Migrate
+from flask_cors import CORS,cross_origin
 from models import User
 from database import db
 from config import Config
@@ -9,30 +10,44 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
+cors = CORS(app)
 migrate = Migrate(app,db)
 mail = Mail(app)
 
 @app.get("/check-working")
 def working():
-    return "Site is working fine."
+    return jsonify({"message":"Site is working fine"}),200
 
 @app.post("/verify-email")
 def verifyEmail():
     email = request.get_json()["email"]
     otp = random.randint(100000,999999)
-    new_user = User(email=email,otp=otp)
-    User.create(new_user)
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        print("User not found")
+        user = User(email=email,otp=otp)
+        User.create(user)
+    else:
+        print("User found")
+        if user.verified:
+            print("User verified")
+            return jsonify({"message":"Email already verified."}),200
+        user.otp = otp
+        print("User not verified")
+        User.update(user)
     msg = Message("OTP Verification",recipients=[email])
     msg.body = f"Your otp is : {otp}"
     mail.send(msg)
-    return jsonify({"message":"OTP has been sent your email address"}),200
+    return jsonify({"message":"OTP has been sent your email address"}),401
 
 @app.post("/verify-otp")
 def verifyOTP():
     email,otp = request.get_json()["email"],request.get_json()["otp"]
     user = User.query.filter_by(email=email).first()
     if user and user.otp == otp:
-        return jsonify({"message":"verified"}),200
+        if User.verify(user):
+            return jsonify({"message":"verified"}),200
+        return jsonify({"message":"failed"}),401
     else:
         return jsonify({"message":"failed"}),401
 
@@ -42,8 +57,8 @@ def sendMailToAdmin():
     fname, lname, email, content = jsonData["fname"], jsonData["lname"], jsonData["email"], jsonData["content"]
     user = User.query.filter_by(email=email).first()
     if not user:
-        return jsonify({"message":"Unknown error occurred !"}),500
-    if not user.verified:
+        return jsonify({"message":"User not found"}),404
+    if user and not user.verified:
         return jsonify({"message":"Please verify your email"}),401
     user.firstname = fname
     user.lastname = lname
@@ -57,6 +72,7 @@ def sendMailToAdmin():
     Email Address : {email}
     message : {content}
 '''
+    mail.send(msg)
     return jsonify({
         "message":"Message sent successfully !"
     }), 200
