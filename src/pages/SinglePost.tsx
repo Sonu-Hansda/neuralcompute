@@ -25,7 +25,7 @@ const SinglePost = () => {
       return (
         <div className="lg:px-48 mb-4">
       {post!.feature_image && (
-        <img className="object-fill mb-2 md:mb-4 lg:mb-16" src={post!.feature_image} />
+        <img className="object-fill mb-2 md:mb-4 lg:mb-16" src={post!.feature_image} alt={post!.title} />
         )}
         <h1 className="px-4 lg:px-48 md:px-16 text-3xl lg:text-5xl font-extrabold mb-2 lg:mb-8">{post!.title}</h1>
        <div className="content" dangerouslySetInnerHTML={{__html: post!.html}}></div>

@@ -48,6 +48,7 @@ const NavBar = () => {
               ? "fixed right-4 md:right-9 top-4 border-white text-white"
               : "border-black text-black"
           } px-2 py-1 rounded-sm transition-colors duration-700`}
+          aria-label="Menu Button"
         >
           {showMenu ? <XMarkIcon height={24} /> : <Bars3Icon height={24} />}
         </button>

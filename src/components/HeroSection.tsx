@@ -11,17 +11,17 @@ const HeroSection = () => {
       <span>
         <Link to={"/blogs"}>
 
-        <button className="border-2 rounded-s-full text-sm md:text-lg font-bold p-3 md:p-4 hover:bg-gray-800 hover:text-white transition-colors ease-in-out duration-500">
+        <button className="border-2 rounded-s-full text-sm md:text-lg font-bold p-3 md:p-4 hover:bg-gray-800 hover:text-white transition-colors ease-in-out duration-500" aria-label="Read blogs" >
           Read blogs
         </button>
         </Link>
         <Link to={"/projects"}>
-        <button className="border-2 text-sm md:text-lg font-bold p-3 md:p-4 hover:bg-gray-800 hover:text-white transition-colors ease-in-out duration-500">
+        <button className="border-2 text-sm md:text-lg font-bold p-3 md:p-4 hover:bg-gray-800 hover:text-white transition-colors ease-in-out duration-500" aria-label="Projects" >
           Projects
         </button>
         </Link>
         <Link to={"/contact"}>
-        <button className="border-2 rounded-e-full text-sm md:text-lg font-bold p-3 md:p-4 hover:bg-gray-800 hover:text-white transition-colors ease-in-out duration-500">
+        <button className="border-2 rounded-e-full text-sm md:text-lg font-bold p-3 md:p-4 hover:bg-gray-800 hover:text-white transition-colors ease-in-out duration-500" aria-label="Hire me" >
           Hire me :)
         </button>
         </Link>

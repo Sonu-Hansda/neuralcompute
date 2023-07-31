@@ -22,7 +22,7 @@ const PostCard = (props: IPost) => {
         <span className="text-sm text-gray-600">{props.reading_time} min read</span>
         </span>
         { props.feature_image && (
-          <img className="h-32 w-32 object-cover" src={props.feature_image} />
+          <img className="h-32 w-32 object-cover" alt={props.title} src={props.feature_image} />
         )}
       </div>
     </Link>

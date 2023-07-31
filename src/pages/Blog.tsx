@@ -85,6 +85,7 @@ const Blog = () => {
               className={`${
                 currentTag == "All" ? "bg-black text-white" : "bg-gray-200"
               } px-3 py-2 text-sm text-center rounded-full hover:text-white hover:bg-black transition-colors duration-200 ease-linear`}
+              aria-label="All"
             >
               All
             </button>
@@ -98,6 +99,7 @@ const Blog = () => {
                       ? "bg-black text-white"
                       : "bg-gray-200"
                   } px-3 py-2 text-sm text-center rounded-full hover:text-white hover:bg-black transition-colors duration-200 ease-linear`}
+                  aria-label={tag.name}
                 >
                   {tag.name}
                 </button>
@@ -116,6 +118,7 @@ const Blog = () => {
                     <button
                       onClick={handleLoadMore}
                       className="bg-gray-300 hover:bg-gray-200 transition-colors duration-300 text-sm p-3"
+                      aria-label="Load more"
                     >
                       Load more{" "}
                       <ArrowPathIcon
