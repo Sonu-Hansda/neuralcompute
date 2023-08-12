@@ -1,3 +1,4 @@
+import siteImage from "../assets/logo.png";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import NavItem from "./NavItem";
 import { useEffect, useState } from "react";
@@ -31,21 +32,16 @@ const NavBar = () => {
     </ul>
   );
   return (
-    <header className="container mx-auto p-4 border-b border-gray-100">
+    <header className="container mx-auto p-4">
       <nav className="flex justify-between items-center">
         <Link to={"/"}>
-          <span className="flex items-center gap-x-2">
-            <div className="border-violet-950 border-2 rounded-full shadow-lg font-bold p-1 lg:p-2">
-              NC
-            </div>
-            <h1 className="text-xl font-bold">Neural Compute</h1>
-          </span>
+          <img src={siteImage} className="h-14 md:h-16 lg:h-20" />
         </Link>
         <button
           onClick={toggleMenu}
           className={`z-50 block lg:hidden border ${
             showMenu
-              ? "fixed right-4 md:right-9 top-4 border-white text-white"
+              ? "fixed right-4 md:right-9 top-7 md:top-8 border-white text-white"
               : "border-black text-black"
           } px-2 py-1 rounded-sm transition-colors duration-700`}
           aria-label="Menu Button"
@@ -57,11 +53,8 @@ const NavBar = () => {
             showMenu ? "translate-x-0" : "-translate-x-full"
           } ease-in-out duration-300`}
         >
-          <span className="flex items-center gap-x-2 pt-4 pl-10 ">
-            <div className="border-white border-2 rounded-full font-bold p-1 lg:p-2">
-              NC
-            </div>
-            <h1 className="text-xl font-bold">Neural Compute</h1>
+          <span className="flex items-center gap-x-2 pt-8 pl-10 ">
+            <h1 className="text-3xl font-bold">Menu</h1>
           </span>
           {menuItems}
         </div>
